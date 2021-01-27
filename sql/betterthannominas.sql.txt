@@ -1,0 +1,37 @@
+CREATE TABLE Categories( CatId INTEGER, 
+                  Name VARCHAR(45),
+       			  Description VARCHAR(200),
+                     PRIMARY KEY (CatId),
+                       CONSTRAINT UN_CAT_NAME UNIQUE (Name));
+                  
+CREATE TABLE Products ( ProdId INTEGER, 
+                  		Name VARCHAR(45),
+       			  		Description VARCHAR(90),
+                    	Weight REAL,
+                     	Stock INTEGER,
+                     	Category INTEGER,
+                      PRIMARY KEY (ProdId),
+                     FOREIGN KEY (Category) REFERENCES Category(CatId));
+                     
+
+                     
+                     CREATE TABLE Restaurant ( ResId INTEGER, 
+                  		Mail VARCHAR(90),
+       			  		Pwd VARCHAR(512),
+                    	Address VARCHAR(200),
+                     	CP INTEGER,
+                     	Country int(45),
+                        City int(45),
+                      PRIMARY KEY (ResId),
+                      CONSTRAINT UN_RES_MAIL UNIQUE (Mail));
+                  
+CREATE TABLE Orders( OrdId INTEGER, 
+                  vDate DATE,
+       			  Sent ENUM(0,1),
+                    Restaurant INTEGER,
+                     PRIMARY KEY (OrdId),
+					FOREIGN KEY (Restaurant) REFERENCES Restaurant(ResId));
+                    
+Create TABLE Admin (AdmId int(20), 
+                  		Mail VARCHAR(45),
+       			  		Pwd VARCHAR(512));
