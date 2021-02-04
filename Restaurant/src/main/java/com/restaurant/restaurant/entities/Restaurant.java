@@ -17,7 +17,7 @@ public class Restaurant {
     @Column(name = "ResId")
     private int resId;
 
-    @Column(name = "Mail")
+    @Column(name = "Mail",unique=true)
     private String mail;
 
     @Column(name = "Pwd")

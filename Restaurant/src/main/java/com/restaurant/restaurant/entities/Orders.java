@@ -28,7 +28,7 @@ public class Orders {
     @Column(name = "Sent")
     private int sent;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Restaurant")
     private int restaurant;
 }

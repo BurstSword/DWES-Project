@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
+
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
@@ -32,6 +32,7 @@ public class Products {
     @Column(name = "Price")
     private int price;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Category")
     private int category;
 }

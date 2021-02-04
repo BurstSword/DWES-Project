@@ -15,16 +15,18 @@ public class ProductOrders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProdOrder")
-    private int prodOrder;
+    @Column(name = "ProdOrderId")
+    private int prodOrderId;
 
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "vOrder")
-    private Date vDate;
+    private Date vOrder;
 
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Product")
     private int product;
 
-    @OneToOne(cascade = CascadeType.ALL)
+
     @JoinColumn(name = "Units")
-    private int restaurant;
+    private int units;
 }

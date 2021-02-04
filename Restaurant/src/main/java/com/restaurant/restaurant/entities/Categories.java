@@ -18,7 +18,7 @@ public class Categories {
     @Column(name = "CatId")
     private int catId;
 
-    @Column(name = "Name")
+    @Column(name = "Name",unique = true)
     @Length(min = 1, max = 45, message = "Entre 0 y 45 caracteres")
     @NotNull(message = "is required")
     private String name;
