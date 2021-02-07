@@ -1,12 +1,14 @@
 package com.restaurant.restaurant.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
-
+@Entity
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Table(name = "products")
@@ -14,25 +16,29 @@ public class Products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProdId")
-    private int prodId;
+    @Column(name = "id")
+    private int id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "Description")
+    @Column(name = "description")
     private int description;
 
-    @Column(name = "Weight")
-    private int Weight;
+    @Column(name = "weight")
+    private int weight;
 
-    @Column(name = "Stock")
+    @Column(name = "stock")
     private int stock;
 
-    @Column(name = "Price")
+    @Column(name = "price")
     private int price;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Category")
-    private int category;
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
+    private Categories categories;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductOrders> productOrders;
 }

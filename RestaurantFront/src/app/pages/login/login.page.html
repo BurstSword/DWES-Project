@@ -1,0 +1,49 @@
+<ion-content>
+
+  
+  <div class="fondoPantalla">
+  <ion-slide>
+      <div class="container-login">
+          <ion-grid>
+              <ion-row>
+                  <ion-col>
+                      <h1>Login</h1>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-list>
+  
+                          <ion-item>
+                              <ion-icon name="person" class="icon-login"></ion-icon>
+                              <ion-input name="user" [(ngModel)]="admin.mail" type="text" required placeholder="Usuario"></ion-input>
+                          </ion-item>
+                          <br />
+                          <ion-item>
+                              <ion-icon name="lock-closed-outline" class="icon-login"></ion-icon>
+                              <ion-input name="password" [(ngModel)]="admin.pwd" type="password" required placeholder="Contraseña"></ion-input>
+                          </ion-item>
+  
+                      </ion-list>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-button (click)="login()" type="submit" fill="solid" color="none" expand="full" class="btnLog">
+                          Enter
+                      </ion-button>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-label>
+                          <h3>Forgot your password?</h3>
+                          <h3><a routerLink="/register">Register</a></h3>
+                      </ion-label>
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </div>
+      
+  </ion-slide>
+</div>

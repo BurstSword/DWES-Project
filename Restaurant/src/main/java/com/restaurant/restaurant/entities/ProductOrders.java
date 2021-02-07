@@ -8,25 +8,27 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
 @Data
 @NoArgsConstructor @AllArgsConstructor
-@Table(name = "productorders")
+@Table(name = "product_orders")
 public class ProductOrders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProdOrderId")
-    private int prodOrderId;
+    @Column(name = "id")
+    private int id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vOrder")
-    private Date vOrder;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    @MapsId("id")
+    private Orders orders;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Product")
-    private int product;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    @MapsId("id")
+    private Products product;
 
-
-    @JoinColumn(name = "Units")
+    @Column(name = "units")
     private int units;
 }

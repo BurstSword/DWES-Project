@@ -3,26 +3,32 @@ package com.restaurant.restaurant.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 @Data
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "categories")
 public class Categories {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CatId")
-    private int catId;
+    @Column(name = "id")
+    private int id;
 
-    @Column(name = "Name",unique = true)
-    @Length(min = 1, max = 45, message = "Entre 0 y 45 caracteres")
-    @NotNull(message = "is required")
+    @Column(name = "name", unique = true)
+    @NotBlank
     private String name;
 
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "categories")
+    private List<Products> productsList = new ArrayList<>();
 }

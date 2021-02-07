@@ -1,0 +1,99 @@
+<ion-content>
+
+
+    <div class="fondoPantalla">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <ion-slide>
+                <div class="container-login">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <h1>Register</h1>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-list>
+                                    <ion-item>
+                                        <ion-icon name="person" class="icon-login"></ion-icon>
+                                        <ion-input type="text" formControlName="mail" placeholder="Mail"></ion-input>
+                                    </ion-item>
+                                    <div *ngFor="let error of validationMessages.mail">
+                                        <ng-container *ngIf="mail.hasError(error.type) && mail.touched">
+                                            <small class="errorMessage">{{error.message}}</small>
+                                        </ng-container>
+                                    </div>
+                                    <br />
+                                    <ion-item>
+                                        <ion-icon name="lock-closed-outline" class="icon-login"></ion-icon>
+                                        <ion-input type="password" formControlName="password" placeholder="Password">
+                                        </ion-input>
+                                    </ion-item>
+                                    <div *ngFor="let error of validationMessages.password">
+                                        <ng-container *ngIf="password.hasError(error.type) && password.touched">
+                                            <small class="errorMessage">{{error.message}}</small>
+                                        </ng-container>
+                                    </div>
+                                    <br />
+                                    <ion-item>
+                                        <ion-icon name="trail-sign" class="icon-login"></ion-icon>
+                                        <ion-input type="text" formControlName="address" placeholder="Address">
+                                        </ion-input>
+                                    </ion-item>
+                                    <div *ngFor="let error of validationMessages.address">
+                                        <ng-container *ngIf="address.hasError(error.type) && address.touched">
+                                            <small class="errorMessage">{{error.message}}</small>
+                                        </ng-container>
+                                    </div>
+                                    <br />
+                                    <ion-item>
+                                        <ion-icon name="trail-sign" class="icon-login"></ion-icon>
+                                        <ion-input type="text" formControlName="city" placeholder="City"></ion-input>
+                                    </ion-item>
+                                    <div *ngFor="let error of validationMessages.city">
+                                        <ng-container *ngIf="city.hasError(error.type) && city.touched">
+                                            <small class="errorMessage">{{error.message}}</small>
+                                        </ng-container>
+                                    </div>
+                                    <br />
+                                    <ion-item>
+                                        <ion-icon name="earth-outline" class="icon-login"></ion-icon>
+                                        <ion-input type="text" formControlName="country" placeholder="Country">
+                                        </ion-input>
+                                    </ion-item>
+                                    <div *ngFor="let error of validationMessages.country">
+                                        <ng-container *ngIf="country.hasError(error.type) && country.touched">
+                                            <small class="errorMessage">{{error.message}}</small>
+                                        </ng-container>
+                                    </div>
+                                    <br />
+                                    <ion-item>
+                                        <ion-icon name="mail-open-outline" class="icon-login"></ion-icon>
+                                        <ion-input type="text" formControlName="postCode" placeholder="Post Code">
+                                        </ion-input>
+                                    </ion-item>
+                                    <div *ngFor="let error of validationMessages.postalCode">
+                                        <ng-container *ngIf="postCode.hasError(error.type) && postCode.touched">
+                                            <small class="errorMessage">{{error.message}}</small>
+                                        </ng-container>
+                                    </div>
+                                </ion-list>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-button type="submit" fill="solid" expand="full" color="none" class="btnLog">
+                                    Register
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+
+            </ion-slide>
+        </form>
+    </div>

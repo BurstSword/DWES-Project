@@ -1,15 +1,14 @@
 package com.restaurant.restaurant.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 
+
+@Entity
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @Table(name="admin")
@@ -17,15 +16,16 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "AdmId")
-    private int admId;
+    @Column(name = "id")
+    @Setter(value= AccessLevel.NONE)
+    private int id;
 
-    @Column(name = "Mail")
-    @Length(min = 1, max = 45, message = "Entre 0 y 45 caracteres")
-    @NotNull(message = "is required")
+    @Column(name = "mail")
+    @NotBlank
     private String mail;
 
-    @Column(name = "Pwd")
-    private String dni;
+    @Column(name = "pwd")
+    @NotBlank
+    private String pwd;
 
 }
