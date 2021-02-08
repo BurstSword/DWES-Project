@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Credential, Restaurant, Status } from '../interfaces/interfaces';
+import { Credential, Restaurant} from '../interfaces/interfaces';
 
 @Injectable({ providedIn: 'root' })
 
@@ -14,12 +14,12 @@ export class RestaurantService {
     }
     private baseUrl = 'http://localhost:8080/api/account/';
 
-    loginAdmin(loginRestaurant: Credential) {
+    loginRestaurant(loginRestaurant: Credential) {
 
         return this._http.post<any>(this.baseUrl + "loginRestaurant", loginRestaurant);
     }
 
-    registerRestaurant(registerRestaurant: Credential) {
+    registerRestaurant(registerRestaurant: Restaurant) {
 
         return this._http.post<any>(this.baseUrl + "registerRestaurant", registerRestaurant)
     }

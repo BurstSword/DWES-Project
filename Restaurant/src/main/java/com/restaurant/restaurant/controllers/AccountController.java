@@ -27,35 +27,35 @@ public class AccountController {
 
 
     @PostMapping("/loginRestaurant")
-    public ResponseEntity<Restaurant> loginRestaurant(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<?> loginRestaurant(@RequestBody Restaurant restaurant) {
 
         int databaseResponse = accountService.login(restaurant);
 
         switch (databaseResponse) {
             case 0:
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return ResponseEntity.badRequest().body(400);
             case 1:
                 Restaurant restaurant1 = restaurantRepository.findByMail(restaurant.getMail()).get();
-                return new ResponseEntity<>(restaurant1, HttpStatus.OK);
+                return  ResponseEntity.ok(restaurant1);
         }
 
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.badRequest().body(500);
     }
 
     @PostMapping("/loginAdmin")
-    public ResponseEntity<Admin> loginRestaurant(@RequestBody Admin admin) {
+    public ResponseEntity<?> loginRestaurant(@RequestBody Admin admin) {
 
         int databaseResponse = accountService.login(admin);
 
         switch (databaseResponse) {
             case 0:
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return ResponseEntity.badRequest().body(400);
             case 1:
                 Admin admin1 = adminRepository.findByMail(admin.getMail()).get();
-                return new ResponseEntity<>(admin1, HttpStatus.OK);
+                return ResponseEntity.ok(admin1);
         }
 
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.badRequest().body(500);
     }
 
     @PostMapping("/registerRestaurant")
@@ -67,28 +67,28 @@ public class AccountController {
             case 0:
                 return ResponseEntity.badRequest().body(400);
             case 1:
-                return ResponseEntity.badRequest().body(409);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
             case 2:
-                return ResponseEntity.ok(200);
+                return ResponseEntity.noContent().build();
         }
 
         return ResponseEntity.badRequest().body(500);
     }
 
     @PostMapping("/registerAdmin")
-    public ResponseEntity<Admin> registerAdmin(@RequestBody Admin admin) {
+    public ResponseEntity<?> registerAdmin(@RequestBody Admin admin) {
 
         int databaseResponse = accountService.register(admin);
 
         switch (databaseResponse) {
             case 0:
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return ResponseEntity.badRequest().body(400);
             case 1:
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
             case 2:
-                return new ResponseEntity<>(HttpStatus.CREATED);
+                return ResponseEntity.noContent().build();
         }
 
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.badRequest().body(500);
     }
 }

@@ -4,7 +4,7 @@ import { Restaurant } from 'src/app/interfaces/interfaces';
 import { RestaurantService } from '../../services/restaurant.service';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
-import { LoginPage } from '../login/login.page';
+
 
 
 @Component({
@@ -31,6 +31,7 @@ export class RegisterPage implements OnInit {
     this.restaurantService.registerRestaurant(this.restaurant).subscribe(
       data => {
         ;
+        
         if (data == 200) {
           Swal.fire({
             icon: 'success',
