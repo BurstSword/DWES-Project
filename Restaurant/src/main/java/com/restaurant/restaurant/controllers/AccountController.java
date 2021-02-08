@@ -59,20 +59,20 @@ public class AccountController {
     }
 
     @PostMapping("/registerRestaurant")
-    public ResponseEntity<Restaurant> registerRestaurant(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<?> registerRestaurant(@RequestBody Restaurant restaurant) {
 
         int databaseResponse = accountService.register(restaurant);
 
         switch (databaseResponse) {
             case 0:
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return ResponseEntity.badRequest().body(400);
             case 1:
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+                return ResponseEntity.badRequest().body(409);
             case 2:
-                return new ResponseEntity<>(HttpStatus.CREATED);
+                return ResponseEntity.ok(200);
         }
 
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.badRequest().body(500);
     }
 
     @PostMapping("/registerAdmin")

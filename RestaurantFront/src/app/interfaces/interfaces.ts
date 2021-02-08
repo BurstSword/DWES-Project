@@ -1,9 +1,11 @@
+import { ServerResponse } from "http"
+
 export interface Admin{
     mail:string,
     pwd:string
 }
 export interface Restaurant{
-    id:number,
+    id?:number,
     address:string,
     city:string,
     country:string,
@@ -14,4 +16,7 @@ export interface Restaurant{
 export interface Credential{
     mail:string,
     pwd:string
+}
+export interface Status{
+    status:ServerResponse
 }

@@ -32,7 +32,6 @@ public class Restaurant {
     private String address;
 
     @Column(name = "cp")
-    @Pattern(regexp = "^([0-9]{5})$")
     private String cp;
 
     @Column(name = "country")

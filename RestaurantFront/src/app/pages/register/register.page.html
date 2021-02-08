@@ -26,11 +26,11 @@
                                     <br />
                                     <ion-item>
                                         <ion-icon name="lock-closed-outline" class="icon-login"></ion-icon>
-                                        <ion-input type="password" formControlName="password" placeholder="Password">
+                                        <ion-input type="password" formControlName="pwd" placeholder="Password">
                                         </ion-input>
                                     </ion-item>
-                                    <div *ngFor="let error of validationMessages.password">
-                                        <ng-container *ngIf="password.hasError(error.type) && password.touched">
+                                    <div *ngFor="let error of validationMessages.pwd">
+                                        <ng-container *ngIf="pwd.hasError(error.type) && pwd.touched">
                                             <small class="errorMessage">{{error.message}}</small>
                                         </ng-container>
                                     </div>
@@ -69,11 +69,11 @@
                                     <br />
                                     <ion-item>
                                         <ion-icon name="mail-open-outline" class="icon-login"></ion-icon>
-                                        <ion-input type="text" formControlName="postCode" placeholder="Post Code">
+                                        <ion-input type="text" formControlName="cp" placeholder="Post Code">
                                         </ion-input>
                                     </ion-item>
-                                    <div *ngFor="let error of validationMessages.postalCode">
-                                        <ng-container *ngIf="postCode.hasError(error.type) && postCode.touched">
+                                    <div *ngFor="let error of validationMessages.cp">
+                                        <ng-container *ngIf="cp.hasError(error.type) && cp.touched">
                                             <small class="errorMessage">{{error.message}}</small>
                                         </ng-container>
                                     </div>

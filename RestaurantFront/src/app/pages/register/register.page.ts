@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Restaurant } from 'src/app/interfaces/interfaces';
+import { RestaurantService } from '../../services/restaurant.service';
+import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+import { LoginPage } from '../login/login.page';
+
 
 @Component({
   selector: 'app-register',
@@ -9,23 +15,51 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterPage implements OnInit {
 
   public registerForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private restaurantService: RestaurantService) { }
+  private restaurant: Restaurant;
 
   ngOnInit() {
     this.createForm();
   }
 
 
+
   register() {
     if (this.registerForm.invalid) return
-    console.log("Patata");
+    this.restaurant = this.registerForm.value;
+
+    this.restaurantService.registerRestaurant(this.restaurant).subscribe(
+      data => {
+        ;
+        if (data == 200) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Registered successfully',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            if (result.isDismissed) {
+              this.router.navigate(['/login']);
+            }
+          })
+        }
+      }, error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'That email already exists',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+
   }
 
   get mail() {
     return this.registerForm.get('mail')
   }
-  get password() {
-    return this.registerForm.get('password')
+  get pwd() {
+    return this.registerForm.get('pwd')
   }
   get country() {
     return this.registerForm.get('country')
@@ -36,19 +70,19 @@ export class RegisterPage implements OnInit {
   get address() {
     return this.registerForm.get('address')
   }
-  get postCode() {
-    return this.registerForm.get('postCode')
+  get cp() {
+    return this.registerForm.get('cp')
   }
 
   createForm() {
     this.registerForm = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-      password: ['', [Validators.required, Validators.minLength(8),
+      pwd: ['', [Validators.required, Validators.minLength(8),
       Validators.maxLength(200)]],
       country: ['', [Validators.required, Validators.maxLength(50)]],
       city: ['', [Validators.required, Validators.maxLength(50)]],
       address: ['', [Validators.required, Validators.maxLength(50)]],
-      postCode: ['', [Validators.required, Validators.pattern('^([0-9]{5})$')]]
+      cp: ['', [Validators.required, Validators.pattern('^([0-9]{5})$')]]
     })
   }
 
@@ -58,7 +92,7 @@ export class RegisterPage implements OnInit {
       { type: 'maxlength', message: 'Max length of 50 characters' },
       { type: 'email', message: 'Valid email' },
     ],
-    'password': [
+    'pwd': [
       { type: 'required', message: 'Required' },
       { type: 'minlength', message: 'Min length of 8 characters' },
       { type: 'maxlength', message: 'Max length of 40 characters' }
@@ -75,7 +109,7 @@ export class RegisterPage implements OnInit {
       { type: 'required', message: 'Required' },
       { type: 'maxlength', message: 'Max length of 50 characters' },
     ],
-    'postalCode': [
+    'cp': [
       { type: 'required', message: 'Required' },
       { type: 'pattern', message: 'Spanish postalCode (5 numbers)' },
     ]
