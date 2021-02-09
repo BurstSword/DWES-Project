@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Credential, Restaurant } from 'src/app/interfaces/interfaces';
 import { RestaurantService } from 'src/app/services/restaurant.service';
-import { AdminService } from '../../services/admin.service';
 import Swal from 'sweetalert2'
+import { Storage } from '@ionic/storage';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +14,24 @@ import Swal from 'sweetalert2'
 })
 export class LoginPage implements OnInit {
 
-  constructor(private adminService:AdminService, private router: Router, private formBuilder: FormBuilder, private restaurantService: RestaurantService) { }
-  public admin:Credential;
+  constructor(private router: Router, private formBuilder: FormBuilder, private restaurantService: RestaurantService, private storage: Storage, public menuCtrl: MenuController) { }
+  public admin: Credential;
   public loginForm: FormGroup;
-  public restaurant:Restaurant;
+  public restaurant: Restaurant;
   ngOnInit() {
+    this.menuCtrl.swipeGesture(false);
     this.createForm()
+    this.storage.clear();
   }
 
-  login(){
+  login() {
     if (this.loginForm.invalid) return
     this.restaurant = this.loginForm.value;
-    console.log(this.restaurant)
     this.restaurantService.loginRestaurant(this.restaurant).subscribe(
       data => {
-        ;
-        
-        if (data !=null) {
+        if (data) {
+          this.restaurant = data;
+          this.storage.set("restaurant", this.restaurant);
           Swal.fire({
             icon: 'success',
             title: 'Logged successfully',
@@ -59,7 +61,7 @@ export class LoginPage implements OnInit {
     return this.loginForm.get('pwd')
   }
 
- 
+
 
   createForm() {
     this.loginForm = this.formBuilder.group({

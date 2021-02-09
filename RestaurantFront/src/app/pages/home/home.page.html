@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-menu-button slot="start">
+      <ion-menu-button menu="mainMenu"></ion-menu-button>
+    </ion-menu-button>
+    <ion-title>Category List</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="categories">
+  <ion-list *ngFor="let category of categories">
+    <ion-item (click)="showProducts(category)">
+      <ion-avatar slot="start">
+        <img src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg"/>
+      </ion-avatar>
+      <ion-label>{{category.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-fab routerLink="/cart" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="cart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

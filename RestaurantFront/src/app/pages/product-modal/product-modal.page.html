@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>productModal</ion-title>
+    
+      <ion-icon slot="end" (click)="exit()" color="danger"  name="exit"></ion-icon>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list *ngFor="let product of products">
+  <ion-item (click)="addItemToCart(product)">
+    <ion-avatar slot="start">
+      <img src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg"/>
+    </ion-avatar>
+    <ion-label>{{product.name}}</ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>
