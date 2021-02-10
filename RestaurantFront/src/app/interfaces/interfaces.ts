@@ -22,9 +22,9 @@ export interface Orders{
     restaurant?:Restaurant
     
 }
-export interface Order{
+export interface ProductOrder{
     id?:number,
-    order:Orders
+    orders:Orders
     product:Product
     units:number
     

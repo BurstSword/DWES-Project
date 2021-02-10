@@ -45,12 +45,11 @@ export class HomePage implements OnInit {
   }
 
   async showProducts(category: Category) {
-    const products = category.productsList;
     const modal = await this.modalController.create({
       component: ProductModalPage,
       cssClass: 'my-custom-modal-css',
       componentProps: {
-        products
+        category
       }
     })
     await modal.present();

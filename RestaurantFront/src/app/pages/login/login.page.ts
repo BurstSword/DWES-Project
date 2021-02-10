@@ -36,7 +36,9 @@ export class LoginPage implements OnInit {
             icon: 'success',
             title: 'Logged successfully',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            allowOutsideClick:false,
+            backdrop:false
           }).then((result) => {
             if (result.isDismissed) {
               this.router.navigate(['/home']);
@@ -48,7 +50,9 @@ export class LoginPage implements OnInit {
           icon: 'error',
           title: 'Wrong credentials',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
+          allowOutsideClick:false,
+          backdrop:false
         })
       }
     )

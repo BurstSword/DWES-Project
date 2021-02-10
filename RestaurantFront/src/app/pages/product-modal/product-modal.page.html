@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-<ion-list *ngFor="let product of products">
+<ion-list *ngFor="let product of category.productsList">
   <ion-item (click)="addItemToCart(product)">
     <ion-avatar slot="start">
       <img src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg"/>

@@ -31,25 +31,26 @@ export class RegisterPage implements OnInit {
 
     this.restaurantService.registerRestaurant(this.restaurant).subscribe(
       data => {
-        ;
-        
-        if (data == 200) {
           Swal.fire({
             icon: 'success',
             title: 'Registered successfully',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            allowOutsideClick:false,
+            backdrop:false
           }).then((result) => {
             if (result.isDismissed) {
               this.router.navigate(['/login']);
             }
           })
-        }
+        
       }, error => {
         Swal.fire({
           icon: 'error',
           title: 'That email already exists',
           showConfirmButton: false,
+          allowOutsideClick:false,
+            backdrop:false,
           timer: 1500
         })
       }
