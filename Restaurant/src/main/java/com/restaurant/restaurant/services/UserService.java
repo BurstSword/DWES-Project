@@ -15,5 +15,5 @@ public interface UserService {
     List<Categories> getCategoryList();
     //void saveProductOrder(ProductOrders productOrders);
     void saveOrder(Orders orders);
-    List<ProductsOrders> getProductOrders(int id);
+    List<ProductsOrders> getProductOrders(Collection<Integer> id);
 }

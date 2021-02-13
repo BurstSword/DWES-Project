@@ -42,8 +42,8 @@ public class UserController {
         return new ResponseEntity<>(categoriesList, HttpStatus.OK);
     }
 
-    @GetMapping("/getOrders")
-    public ResponseEntity<List<ProductsOrders>> getOrders(@RequestParam int id) {
+    @PostMapping("/getOrders")
+    public ResponseEntity<List<ProductsOrders>> getOrders(@RequestBody Collection<Integer> id) {
 
         List<ProductsOrders> productsOrdersList = userService.getProductOrders(id);
 

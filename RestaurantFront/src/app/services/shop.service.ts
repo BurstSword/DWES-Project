@@ -23,8 +23,8 @@ export class ShopService {
         return this._http.post<any>(this.baseUrl + "saveOrder",cart);
     }
 
-    getOrders(id:number) {
-        return this._http.get<any>(this.baseUrl + "categoryList");
+    getOrders(id:number[]) {
+        return this._http.post<any>(this.baseUrl + "getOrders",id);
     }
    
 }

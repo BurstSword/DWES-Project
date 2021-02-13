@@ -28,12 +28,11 @@ export interface Orders{
     v_Date?:Date,
     sent?:number,
     restaurant?:Restaurant,
-    productsOrders:ProductsOrders
     
 }
 export interface ProductsOrders{
-    id?:number,
-    orders:Orders
+    id?:Id,
+    orders?:Orders
     product:Product
     units:number
     
@@ -55,4 +54,8 @@ export interface Restaurant{
 export interface Credential{
     mail?:string,
     pwd?:string
+}
+export interface Id{
+    productId:number,
+    orderId:number
 }

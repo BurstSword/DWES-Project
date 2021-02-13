@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="loaded==true">
+<ion-list *ngFor="let item of orders">
+  <ion-item>
+    <ion-label>{{item.product.name}}</ion-label>
+    <ion-label slot="end">{{item.units}}</ion-label>
+    <ion-label slot="end">{{item.units*item.product.price}}</ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>

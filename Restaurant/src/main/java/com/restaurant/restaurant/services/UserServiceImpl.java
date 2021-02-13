@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<ProductsOrders> getProductOrders(int id) {
-        return productOrdersRepository.findAllByOrders_Id(id);
+    public List<ProductsOrders> getProductOrders(Collection<Integer> id) {
+        return productOrdersRepository.findAllByOrders_IdIn(id);
     }
 
 }
