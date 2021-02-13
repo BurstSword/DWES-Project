@@ -30,6 +30,7 @@ export class LoginPage implements OnInit {
     this.restaurantService.loginRestaurant(this.restaurant).subscribe(
       data => {
         if (data) {
+          console.log(data);
           this.restaurant = data;
           this.storage.set("restaurant", this.restaurant);
           Swal.fire({
@@ -38,7 +39,7 @@ export class LoginPage implements OnInit {
             showConfirmButton: false,
             timer: 1500,
             allowOutsideClick:false,
-            backdrop:false
+            
           }).then((result) => {
             if (result.isDismissed) {
               this.router.navigate(['/home']);
@@ -52,7 +53,7 @@ export class LoginPage implements OnInit {
           showConfirmButton: false,
           timer: 1500,
           allowOutsideClick:false,
-          backdrop:false
+          
         })
       }
     )

@@ -1,11 +1,15 @@
 package com.restaurant.restaurant.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -34,11 +38,18 @@ public class Products {
     @Column(name = "price")
     private int price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id")
     @JsonBackReference
     private Categories categories;
 
-    @OneToMany(mappedBy = "product")
-    private Set<ProductOrders> productOrders;
+
+    @ManyToMany
+    @JoinTable(name = "products_orders",
+    joinColumns = {@JoinColumn(name = "products_id")})
+    @JsonBackReference(value="product-order")
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    private Set<Orders> orders;
+
+
 }

@@ -50,10 +50,8 @@ export class ProductModalPage implements OnInit {
       })
     }else{
       product.quantity=1;
-      this.category.productsList=[];
       product.categories=this.category;
-      
-      this.cart.unshift(product);
+      this.cart.push(product);
       Swal.fire({
         icon: 'success',
         title: 'Successfully added',

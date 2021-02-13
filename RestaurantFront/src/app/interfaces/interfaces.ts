@@ -8,6 +8,14 @@ export interface Product{
     categories?:Category
     quantity?:number
 }
+export interface CartItem{
+    id:number,
+    quantity:number
+}
+export interface Cart{
+    restaurant_id:number,
+    cartItems:CartItem[]
+}
 export interface Category{
     id?:number,
     name?:string,
@@ -19,10 +27,11 @@ export interface Orders{
     id?:number,
     v_Date?:Date,
     sent?:number,
-    restaurant?:Restaurant
+    restaurant?:Restaurant,
+    productsOrders:ProductsOrders
     
 }
-export interface ProductOrder{
+export interface ProductsOrders{
     id?:number,
     orders:Orders
     product:Product
@@ -40,7 +49,8 @@ export interface Restaurant{
     country?:string,
     cp?:string,
     mail?:string,
-    pwd?:string
+    pwd?:string,
+    ordersList?:Orders[]
 }
 export interface Credential{
     mail?:string,

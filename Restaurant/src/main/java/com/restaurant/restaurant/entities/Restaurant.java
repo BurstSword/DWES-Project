@@ -1,7 +1,9 @@
 package com.restaurant.restaurant.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,6 +43,6 @@ public class Restaurant {
     private String city;
 
     @OneToMany(mappedBy = "restaurant")
-    @JsonManagedReference
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
     private List<Orders> ordersList=new ArrayList<>();
 }
