@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Cart, ProductsOrders} from '../interfaces/interfaces';
+import { Cart, ProductsOrders, Restaurant } from '../interfaces/interfaces';
 
 @Injectable({ providedIn: 'root' })
 
@@ -26,5 +26,8 @@ export class ShopService {
     getOrders(id:number[]) {
         return this._http.post<ProductsOrders[]>(this.baseUrl + "getOrders",id);
     }
-   
+    
+    getRestaurant(restaurant:Restaurant) {
+        return this._http.post<any>(this.baseUrl + "getRestaurant",restaurant);
+    }
 }

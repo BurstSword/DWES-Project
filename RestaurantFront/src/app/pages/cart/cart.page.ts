@@ -71,10 +71,13 @@ export class CartPage implements OnInit {
     }
   }
 
-  buy(){
-    
-    this.saveOrder();
-    
+  removeItemFromCart(productToRemove: Product) {
+      const index = this.cart.indexOf(productToRemove);
+      if(index > -1) {
+        this.cart.splice(index, 1);
+      }
+      this.saveCart();
+      this.calcTotal();
   }
 
   async loadRestaurant() {
@@ -86,57 +89,70 @@ export class CartPage implements OnInit {
   }
 
   saveOrder(){
-    this.cartItems=[];
-    this.cart.forEach(element => {
-      console.log("Cantidad "+element.quantity);
-      this.cartItems.push({
-        id:element.id,
-        quantity:element.quantity
-      });
-    });
-    this.cartRequest={
-      restaurant_id:this.restaurant.id,
-      cartItems:this.cartItems
-    }
-    console.log(this.cartRequest);
-    this.shopService.saveCartItems(this.cartRequest).subscribe(data=>{
-      
-      if(data==200){
-        
-        Swal.fire({
-          icon: 'success',
-          title: 'Confirmed payment',
-          showConfirmButton: false,
-          timer: 1500,
-          allowOutsideClick:false,
-          backdrop:false
-        })
-        this.cart=[];
-        this.saveCart();
-        this.total=0;
-      }
-    },error=>{
-      
-      if(error.error==415){
-        Swal.fire({
-          icon: 'error',
-          title: 'User does not exist',
-          showConfirmButton: false,
-          timer: 1500,
-          allowOutsideClick:false,
-          backdrop:false
-        })
-      }else if(error.error==416){
-        Swal.fire({
-          icon: 'error',
-          title: 'Insufficient stock :(',
-          showConfirmButton: false,
-          timer: 1500,
-          allowOutsideClick:false,
-          backdrop:false
-        })
-      }
-    })
     
-  }
+    if(this.cart.length!=0){
+      this.cartItems=[];
+      this.cart.forEach(element => {
+        console.log("Cantidad "+element.quantity);
+        this.cartItems.push({
+          id:element.id,
+          quantity:element.quantity
+        });
+      });
+      this.cartRequest={
+        restaurant_id:this.restaurant.id,
+        cartItems:this.cartItems
+      }
+      console.log(this.cartRequest);
+      this.shopService.saveCartItems(this.cartRequest).subscribe(data=>{
+        
+        if(data==200){
+          
+          Swal.fire({
+            icon: 'success',
+            title: 'Confirmed payment',
+            showConfirmButton: false,
+            timer: 1500,
+            allowOutsideClick:false,
+            backdrop:false
+          })
+          this.cart=[];
+          this.saveCart();
+          this.total=0;
+        }
+      },error=>{
+        
+        if(error.error==415){
+          Swal.fire({
+            icon: 'error',
+            title: 'User does not exist',
+            showConfirmButton: false,
+            timer: 1500,
+            allowOutsideClick:false,
+            backdrop:false
+          })
+        }else if(error.error==416){
+          Swal.fire({
+            icon: 'error',
+            title: 'Insufficient stock :(',
+            showConfirmButton: false,
+            timer: 1500,
+            allowOutsideClick:false,
+            backdrop:false
+          })
+        }
+      })
+      
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Nothing to buy',
+        showConfirmButton: false,
+        timer: 1500,
+        allowOutsideClick:false,
+        backdrop:false
+      })
+    }
+    }
+    
 }

@@ -27,38 +27,38 @@ export class ProductModalPage implements OnInit {
     )
   }
 
-  saveCart(){
+  saveCart() {
     this.storage.set("cart", this.cart);
   }
 
-  addItemToCart(product:Product){
-    let exist=false;
+  addItemToCart(product: Product) {
+    let exist = false;
     for (let index = 0; index < this.cart.length; index++) {
-     if(this.cart[index].name==product.name){
-      exist=true;
-     }
-      
+      if (this.cart[index].name == product.name) {
+        exist = true;
+      }
+
     }
-    if(exist==true){
+    if (exist == true) {
       Swal.fire({
         icon: 'warning',
         title: 'Already added to cart',
         showConfirmButton: false,
         timer: 1500,
-        allowOutsideClick:false,
-            backdrop:false
+        allowOutsideClick: false,
+        backdrop: false
       })
-    }else{
-      product.quantity=1;
-      product.categories=this.category;
+    } else {
+      product.quantity = 1;
+      //product.categories=this.category;
       this.cart.push(product);
       Swal.fire({
         icon: 'success',
         title: 'Successfully added',
         showConfirmButton: false,
         timer: 1500,
-        allowOutsideClick:false,
-        backdrop:false
+        allowOutsideClick: false,
+        backdrop: false
       })
       this.saveCart();
     }
@@ -67,5 +67,5 @@ export class ProductModalPage implements OnInit {
   exit() {
     this.ModalController.dismiss();
   }
-  
+
 }

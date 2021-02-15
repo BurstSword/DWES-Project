@@ -16,18 +16,27 @@ export class OrdersPage implements OnInit {
   public ids:number[]=[];
   public loaded:boolean=false;
   ngOnInit() {
-    this.getOrders();
+    this.getRestaurant();
   }
 
-  async getOrders() {
+  async getRestaurant() {
     await this.storage.get('restaurant').then(rest => {
       if (rest) {
-        
         this.restaurant = rest;
-        
-        console.log(this.restaurant);
       }
     })
+    
+    await this.shopService.getRestaurant(this.restaurant).subscribe(data=>{
+      if(data){
+        this.restaurant=data;
+        this.getOrdersWithRestaurant()
+      }
+    })
+
+    
+  }
+
+  async getOrdersWithRestaurant(){
 
     this.restaurant.ordersList.forEach(element => {
       this.ids.push(element.id);
@@ -48,6 +57,7 @@ export class OrdersPage implements OnInit {
         });
          */
         this.orders=data;
+        this.orders=this.orders.filter((v,i,a)=>a.findIndex(t=>(t.id.orderId===v.id.orderId && t.id.orderId===v.id.orderId))===i)
         console.log(this.orders);
       }
     })

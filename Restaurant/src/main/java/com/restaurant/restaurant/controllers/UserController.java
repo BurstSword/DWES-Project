@@ -88,10 +88,18 @@ public class UserController {
 
         }
 
-        emailPort.sendEmail(new EmailBody(restaurant.getMail(),order,"Order nº "+ orders.getId()));
+       // emailPort.sendEmail(new EmailBody(restaurant.getMail(),order,"Order nº "+ orders.getId()));
 
 
         return ResponseEntity.ok("200");
+    }
+
+    @PostMapping("/getRestaurant")
+    public ResponseEntity<List<ProductsOrders>> getOrders(@RequestBody Restaurant restaurant) {
+
+        Restaurant restaurant1 = userService.getRestaurant(restaurant).get();
+
+        return new ResponseEntity(restaurant1, HttpStatus.OK);
     }
 
 }

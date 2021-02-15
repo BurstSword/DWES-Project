@@ -1,13 +1,11 @@
 package com.restaurant.restaurant.services;
 
-import com.restaurant.restaurant.entities.Categories;
-import com.restaurant.restaurant.entities.Orders;
+import com.restaurant.restaurant.entities.*;
 //import com.restaurant.restaurant.entities.ProductOrders;
-import com.restaurant.restaurant.entities.Products;
-import com.restaurant.restaurant.entities.ProductsOrders;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -16,4 +14,5 @@ public interface UserService {
     //void saveProductOrder(ProductOrders productOrders);
     void saveOrder(Orders orders);
     List<ProductsOrders> getProductOrders(Collection<Integer> id);
+    Optional<Restaurant> getRestaurant(Restaurant restaurant);
 }
