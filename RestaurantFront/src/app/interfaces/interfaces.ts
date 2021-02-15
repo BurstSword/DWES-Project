@@ -1,10 +1,10 @@
 export interface Product{
     id?:number,
-    name?:string,
-    description?:string,
-    weight?:number,
-    stock?:number,
-    price?:number,
+    name:string,
+    description:string,
+    weight:number,
+    stock:number,
+    price:number,
     categories?:Category
     quantity?:number
 }
@@ -32,8 +32,8 @@ export interface Orders{
 }
 export interface ProductsOrders{
     id?:Id,
-    orders?:Orders
-    product:Product
+    orders:Orders
+    products:Product
     units:number
     
 }

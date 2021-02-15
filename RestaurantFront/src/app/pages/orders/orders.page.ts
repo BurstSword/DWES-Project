@@ -33,10 +33,21 @@ export class OrdersPage implements OnInit {
       this.ids.push(element.id);
     });
 
-    await this.shopService.getOrders(this.ids).subscribe(data=>{
+    await this.shopService.getOrders(this.ids).subscribe(
+      data=>{
+      console.log(data);
       if(data){
+        /* data.forEach(element => {
+         this.orders.push({
+           product:element.product,
+           units:element.units,
+           id:element.id,
+           orders:element.orders
+         })
+         console.log(this.orders);
+        });
+         */
         this.orders=data;
-        this.loaded=true;
         console.log(this.orders);
       }
     })

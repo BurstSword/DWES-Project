@@ -30,7 +30,6 @@ export class LoginPage implements OnInit {
     this.restaurantService.loginRestaurant(this.restaurant).subscribe(
       data => {
         if (data) {
-          console.log(data);
           this.restaurant = data;
           this.storage.set("restaurant", this.restaurant);
           Swal.fire({
