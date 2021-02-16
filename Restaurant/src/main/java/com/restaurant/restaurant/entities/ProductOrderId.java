@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+/**
+ * Class used to make Id field in ProductsOrders class
+ */
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Embeddable

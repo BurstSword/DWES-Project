@@ -10,6 +10,9 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Table categories from database
+ */
 @Entity
 @Data
 @NoArgsConstructor

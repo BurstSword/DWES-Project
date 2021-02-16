@@ -31,12 +31,12 @@ export class HomePage implements OnInit {
     }
   }
 
-  saveCart() {
-    this.storage.set("cart", this.cart);
+  async saveCart() {
+     await this.storage.set("cart", this.cart);
   }
 
-  getCategories() {
-    this.shopService.getCategories().subscribe(
+  async getCategories() {
+    await this.shopService.getCategories().subscribe(
       data => {
         this.categories = data;
       }

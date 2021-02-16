@@ -4,6 +4,7 @@ import { Restaurant } from 'src/app/interfaces/interfaces';
 import { RestaurantService } from '../../services/restaurant.service';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 export class RegisterPage implements OnInit {
 
   public registerForm: FormGroup;
-  constructor(private router: Router, private formBuilder: FormBuilder, private restaurantService: RestaurantService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private restaurantService: RestaurantService,private storage:Storage) { }
   private restaurant: Restaurant;
 
   ngOnInit() {
@@ -79,12 +80,12 @@ export class RegisterPage implements OnInit {
 
   createForm() {
     this.registerForm = this.formBuilder.group({
-      mail: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      mail: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
       pwd: ['', [Validators.required, Validators.minLength(8),
-      Validators.maxLength(200)]],
-      country: ['', [Validators.required, Validators.maxLength(50)]],
-      city: ['', [Validators.required, Validators.maxLength(50)]],
-      address: ['', [Validators.required, Validators.maxLength(50)]],
+      Validators.maxLength(255)]],
+      country: ['', [Validators.required, Validators.maxLength(255)]],
+      city: ['', [Validators.required, Validators.maxLength(255)]],
+      address: ['', [Validators.required, Validators.maxLength(255)]],
       cp: ['', [Validators.required, Validators.pattern('^([0-9]{5})$')]]
     })
   }
@@ -92,29 +93,29 @@ export class RegisterPage implements OnInit {
   validationMessages = {
     'mail': [
       { type: 'required', message: 'Required' },
-      { type: 'maxlength', message: 'Max length of 50 characters' },
-      { type: 'email', message: 'Valid email' },
+      { type: 'maxlength', message: 'Max length of 255 characters' },
+      { type: 'email', message: 'Valid email format' },
     ],
     'pwd': [
       { type: 'required', message: 'Required' },
       { type: 'minlength', message: 'Min length of 8 characters' },
-      { type: 'maxlength', message: 'Max length of 40 characters' }
+      { type: 'maxlength', message: 'Max length of 255 characters' }
     ],
     'country': [
       { type: 'required', message: 'Required' },
-      { type: 'maxlength', message: 'Max length of 50 characters' },
+      { type: 'maxlength', message: 'Max length of 255 characters' },
     ],
     'city': [
       { type: 'required', message: 'Required' },
-      { type: 'maxlength', message: 'Max length of 50 characters' },
+      { type: 'maxlength', message: 'Max length of 255 characters' },
     ],
     'address': [
       { type: 'required', message: 'Required' },
-      { type: 'maxlength', message: 'Max length of 50 characters' },
+      { type: 'maxlength', message: 'Max length of 255 characters' },
     ],
     'cp': [
       { type: 'required', message: 'Required' },
-      { type: 'pattern', message: 'Spanish postalCode (5 numbers)' },
+      { type: 'pattern', message: 'Spanish postal code format (5 numbers)' },
     ]
   }
 }

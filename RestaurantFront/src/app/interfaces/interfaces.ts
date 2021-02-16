@@ -37,10 +37,6 @@ export interface ProductsOrders{
     units:number
     
 }
-export interface Admin{
-    mail:string,
-    pwd:string
-}
 export interface Restaurant{
     id?:number,
     address?:string,

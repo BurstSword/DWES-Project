@@ -18,6 +18,10 @@ import java.sql.Date;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+/**
+ * Controller in charge of receiving and sending the indicated information to buy products, see the categories etc
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:8100")
 @RequestMapping("/api/user")
@@ -34,6 +38,11 @@ public class UserController {
     @Autowired
     private EmailPort emailPort;
 
+
+    /**
+     * Method in charge of sending the categories from database to client.
+     * @return HTTP Response type and the category list
+     */
     @GetMapping("/categoryList")
     public ResponseEntity<List<Categories>> getCategoryList() {
 
@@ -42,6 +51,12 @@ public class UserController {
         return new ResponseEntity<>(categoriesList, HttpStatus.OK);
     }
 
+
+    /**
+     * Method in charge of receiving orders id and sending the products associated to them.
+     * @param id The orders id
+     * @return HTTP Response type and the product list
+     */
     @PostMapping("/getOrders")
     public ResponseEntity<List<ProductsOrders>> getOrders(@RequestBody Collection<Integer> id) {
 
@@ -50,6 +65,11 @@ public class UserController {
         return new ResponseEntity<>(productsOrdersList, HttpStatus.OK);
     }
 
+    /**
+     * Method in charge of saving the orders from the restaurant
+     * @param cart The products received from client
+     * @return HTTP Response type
+     */
     @PostMapping("/saveOrder")
     public ResponseEntity<?> saveOrder(@RequestBody Cart cart) {
         String order = "";
@@ -58,6 +78,7 @@ public class UserController {
         if(restaurants.isEmpty()){
             return ResponseEntity.badRequest().body("415");
         }
+        //Creating the order
         Restaurant restaurant = restaurants.get();
         orders.setRestaurant(restaurant);
         Date sqlDate = new Date(new java.util.Date().getTime());
@@ -66,9 +87,8 @@ public class UserController {
 
         List<Products> productsList = productRepository.findAllByIdInOrderByIdAsc(cart.getCartItems().stream().map(CartItem::getId).collect(Collectors.toList()));
 
-        System.out.println("Antes "+cart.getCartItems());
+        //Creating the productOrder
         Collections.sort(cart.getCartItems(), Comparator.comparingInt(CartItem::getId));
-        System.out.println("Despues "+cart.getCartItems());
         for (int i = 0; i < cart.getCartItems().size(); i++) {
             order+="Product: "+productsList.get(i).getName()+" Units: "+cart.getCartItems().get(i).getQuantity()+"<br>";
             productRepository.save(productsList.get(i));
@@ -94,6 +114,11 @@ public class UserController {
         return ResponseEntity.ok("200");
     }
 
+    /**
+     * Method in charge of sending a restaurant
+     * @param restaurant Credentials for the restaurant to identify it easily
+     * @return HTTP Response type and the restaurant
+     */
     @PostMapping("/getRestaurant")
     public ResponseEntity<List<ProductsOrders>> getOrders(@RequestBody Restaurant restaurant) {
 

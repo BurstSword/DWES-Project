@@ -44,21 +44,9 @@ export class OrdersPage implements OnInit {
 
     await this.shopService.getOrders(this.ids).subscribe(
       data=>{
-      console.log(data);
       if(data){
-        /* data.forEach(element => {
-         this.orders.push({
-           product:element.product,
-           units:element.units,
-           id:element.id,
-           orders:element.orders
-         })
-         console.log(this.orders);
-        });
-         */
         this.orders=data;
-        this.orders=this.orders.filter((v,i,a)=>a.findIndex(t=>(t.id.orderId===v.id.orderId && t.id.orderId===v.id.orderId))===i)
-        console.log(this.orders);
+        this.orders=this.orders.filter((v,i,a)=>a.findIndex(t=>(t.id.orderId===v.id.orderId && t.id.orderId===v.id.orderId))===i);
       }
     })
   }

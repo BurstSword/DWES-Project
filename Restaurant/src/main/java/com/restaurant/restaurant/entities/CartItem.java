@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * Entity used in Cart class
+ */
 @Data
 @NoArgsConstructor @AllArgsConstructor
 public class CartItem {

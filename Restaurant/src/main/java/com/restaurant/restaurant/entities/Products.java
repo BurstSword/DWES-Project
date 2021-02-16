@@ -2,16 +2,17 @@ package com.restaurant.restaurant.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Products table from database
+ */
 @Entity
 @Data
 @NoArgsConstructor @AllArgsConstructor
@@ -27,7 +28,7 @@ public class Products {
     private String name;
 
     @Column(name = "description")
-    private int description;
+    private String description;
 
     @Column(name = "weight")
     private int weight;

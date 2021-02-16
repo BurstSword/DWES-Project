@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Class used to storage the cart from client
+ */
 @Data
 @NoArgsConstructor @AllArgsConstructor
 public class Cart {

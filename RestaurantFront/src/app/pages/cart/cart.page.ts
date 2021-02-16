@@ -5,6 +5,7 @@ import { Cart, CartItem, Orders, Product } from 'src/app/interfaces/interfaces';
 import Swal from 'sweetalert2'
 import { ShopService } from '../../services/shop.service';
 import { Restaurant, ProductsOrders } from '../../interfaces/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,7 @@ import { Restaurant, ProductsOrders } from '../../interfaces/interfaces';
 })
 export class CartPage implements OnInit {
 
-  constructor(private storage: Storage, private shopService:ShopService) { }
+  constructor(private storage: Storage, private shopService:ShopService,private router:Router) { }
   public cart: Product[] = [];
   public total:number=0;
   public order:Orders;
@@ -27,8 +28,8 @@ export class CartPage implements OnInit {
     this.loadRestaurant();
   }
 
-  getCart() {
-    this.storage.get("cart").then(rest => {
+  async getCart() {
+   await this.storage.get("cart").then(rest => {
       if (rest != null) {
         this.cart = rest;
         this.calcTotal();
@@ -59,8 +60,8 @@ export class CartPage implements OnInit {
       
     }
   }
-  saveCart(){
-    this.storage.set("cart", this.cart);
+ async saveCart(){
+   await this.storage.set("cart", this.cart);
   }
 
   calcTotal(){
@@ -84,7 +85,6 @@ export class CartPage implements OnInit {
     const rest = await this.storage.get('restaurant')
     if(rest){
       this.restaurant=rest;
-      console.log(this.restaurant);
     }
   }
 
@@ -103,7 +103,6 @@ export class CartPage implements OnInit {
         restaurant_id:this.restaurant.id,
         cartItems:this.cartItems
       }
-      console.log(this.cartRequest);
       this.shopService.saveCartItems(this.cartRequest).subscribe(data=>{
         
         if(data==200){
@@ -115,10 +114,16 @@ export class CartPage implements OnInit {
             timer: 1500,
             allowOutsideClick:false,
             backdrop:false
-          })
-          this.cart=[];
+          }).then((result)=>{
+            this.cart=[];
           this.saveCart();
           this.total=0;
+            if(result.isDismissed){
+              this.router.navigate(['/home']);
+            }
+          })
+          
+          
         }
       },error=>{
         

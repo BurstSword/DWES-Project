@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * ProductsOrders table from database
+ */
 @Entity
 @Data
 @NoArgsConstructor @AllArgsConstructor

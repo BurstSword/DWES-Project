@@ -13,6 +13,9 @@ import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Restaurant table from database
+ */
 @Entity
 @Data
 @NoArgsConstructor @AllArgsConstructor

@@ -12,7 +12,8 @@ import Swal from 'sweetalert2'
 export class ProductModalPage implements OnInit {
 
   constructor(private ModalController: ModalController, private storage: Storage) { }
-  @Input() category: Category
+  @Input() category: Category;
+ 
   public cart: Product[] = [];
   ngOnInit() {
     this.getCart();
@@ -27,8 +28,8 @@ export class ProductModalPage implements OnInit {
     )
   }
 
-  saveCart() {
-    this.storage.set("cart", this.cart);
+  async saveCart() {
+    await this.storage.set("cart", this.cart);
   }
 
   addItemToCart(product: Product) {
@@ -50,7 +51,6 @@ export class ProductModalPage implements OnInit {
       })
     } else {
       product.quantity = 1;
-      //product.categories=this.category;
       this.cart.push(product);
       Swal.fire({
         icon: 'success',
@@ -64,8 +64,13 @@ export class ProductModalPage implements OnInit {
     }
   }
 
-  exit() {
-    this.ModalController.dismiss();
+  async exit() {
+    await this.ModalController.dismiss();
   }
 
+  
+
+    
+
+    
 }

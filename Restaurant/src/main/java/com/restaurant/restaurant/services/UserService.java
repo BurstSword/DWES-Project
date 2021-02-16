@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service interface used to operate with products and orders
+ */
 public interface UserService {
 
     List<Products> getProductList();

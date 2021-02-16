@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   public restaurant: Restaurant;
   ngOnInit() {
     this.menuCtrl.swipeGesture(false);
-    this.createForm()
+    this.createForm();
     this.storage.clear();
   }
 
@@ -69,20 +69,20 @@ export class LoginPage implements OnInit {
 
   createForm() {
     this.loginForm = this.formBuilder.group({
-      mail: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-      pwd: ['', [Validators.required, Validators.minLength(8)]]
+      mail: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
+      pwd: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(255)]]
     })
   }
   validationMessages = {
     'mail': [
-      { type: 'required', message: 'Required' },
-      { type: 'maxlength', message: 'Max length of 50 characters' },
-      { type: 'email', message: 'Valid email' },
+      { type: 'required', message: 'Mail required' },
+      { type: 'maxlength', message: 'Max length of 255 characters' },
+      { type: 'email', message: 'Valid email format' },
     ],
     'pwd': [
-      { type: 'required', message: 'Required' },
+      { type: 'required', message: 'Password required' },
       { type: 'minlength', message: 'Min length of 8 characters' },
-      { type: 'maxlength', message: 'Max length of 40 characters' }
+      { type: 'maxlength', message: 'Max length of 255 characters' }
     ]
   }
 }

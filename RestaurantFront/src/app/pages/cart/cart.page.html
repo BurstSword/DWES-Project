@@ -31,7 +31,7 @@
 </ion-content>
 <ion-toolbar>
   <ion-title>Total:</ion-title>
-  <ion-title slot="end">{{total | currency}}</ion-title>
+  <ion-title slot="end">{{total | currency:"€"}}</ion-title>
   <ion-button slot="end" (click)="saveOrder()" shape="round">
     <ion-icon name="card-outline"></ion-icon>
   </ion-button>
