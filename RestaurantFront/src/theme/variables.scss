@@ -74,6 +74,27 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --ion-color-bluelight: #7df1de;
+  --ion-color-bluelight-rgb: 125,241,222;
+  --ion-color-bluelight-contrast: #000000;
+  --ion-color-bluelight-contrast-rgb: 0,0,0;
+  --ion-color-bluelight-shade: #6ed4c3;
+  --ion-color-bluelight-tint: #8af2e1;
+
+  --ion-color-midblue: #1a7dd7;
+  --ion-color-midblue-rgb: 26,125,215;
+  --ion-color-midblue-contrast: #ffffff;
+  --ion-color-midblue-contrast-rgb: 255,255,255;
+  --ion-color-midblue-shade: #176ebd;
+  --ion-color-midblue-tint: #318adb;
+
+  --ion-color-darkblue: #0a56b6;
+  --ion-color-darkblue-rgb: 10,86,182;
+  --ion-color-darkblue-contrast: #ffffff;
+  --ion-color-darkblue-contrast-rgb: 255,255,255;
+  --ion-color-darkblue-shade: #094ca0;
+  --ion-color-darkblue-tint: #2367bd;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -229,4 +250,32 @@
 
     --ion-card-background: #1e1e1e;
   }
+ 
+} 
+
+.ion-color-bluelight {
+  --ion-color-base: var(--ion-color-bluelight);
+  --ion-color-base-rgb: var(--ion-color-bluelight-rgb);
+  --ion-color-contrast: var(--ion-color-bluelight-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-bluelight-contrast-rgb);
+  --ion-color-shade: var(--ion-color-bluelight-shade);
+  --ion-color-tint: var(--ion-color-bluelight-tint);
+}
+
+.ion-color-midblue {
+  --ion-color-base: var(--ion-color-midblue);
+  --ion-color-base-rgb: var(--ion-color-midblue-rgb);
+  --ion-color-contrast: var(--ion-color-midblue-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-midblue-contrast-rgb);
+  --ion-color-shade: var(--ion-color-midblue-shade);
+  --ion-color-tint: var(--ion-color-midblue-tint);
+}
+
+.ion-color-darkblue {
+  --ion-color-base: var(--ion-color-darkblue);
+  --ion-color-base-rgb: var(--ion-color-darkblue-rgb);
+  --ion-color-contrast: var(--ion-color-darkblue-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-darkblue-contrast-rgb);
+  --ion-color-shade: var(--ion-color-darkblue-shade);
+  --ion-color-tint: var(--ion-color-darkblue-tint);
 }

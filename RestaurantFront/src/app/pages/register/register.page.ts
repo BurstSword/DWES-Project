@@ -87,7 +87,7 @@ export class RegisterPage implements OnInit {
       city: ['', [Validators.required, Validators.maxLength(255)]],
       address: ['', [Validators.required, Validators.maxLength(255)]],
       cp: ['', [Validators.required, Validators.pattern('^([0-9]{5})$')]]
-    })
+    });
   }
 
   validationMessages = {

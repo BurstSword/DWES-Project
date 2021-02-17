@@ -28,6 +28,9 @@ export class CartPage implements OnInit {
     this.loadRestaurant();
   }
 
+  /**
+   * 
+   */
   async getCart() {
    await this.storage.get("cart").then(rest => {
       if (rest != null) {

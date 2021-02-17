@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="darkblue">
     <ion-menu-button slot="start">
       <ion-menu-button menu="mainMenu"></ion-menu-button>
     </ion-menu-button>
@@ -14,6 +14,7 @@
         <img src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg"/>
       </ion-avatar>
       <ion-label>{{category.name}}</ion-label>
+      <ion-label slot="end">{{category.productsList.length}} product/s</ion-label>
     </ion-item>
   </ion-list>
   <ion-fab routerLink="/cart" vertical="bottom" horizontal="end" slot="fixed">
