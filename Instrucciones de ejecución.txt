@@ -1,0 +1,3 @@
+La carpeta src pertenece a la parte de front con Ionic, para ejecutarla hay que generar un proyecto nuevo de ionic con el comando "ionic start", le pones un nombre, seleccionas blank, dices que sí al incorporar capacitor y listo.
+Eliminas la carpeta src del proyecto nuevo y le pones la del mío, y en la consola en la propia carpeta (Con VSCode si pulsas CTRL+Ñ puedes abrirla directamente en el directiorio) corremos los siguientes comandos "npm install sweetalert2" y "npm i @ionic/storage"
+Habiendo instalado esas dependencias ya podemos correr "ionic serve" en la consola y se ejecutará y desplegará en el puerto 8100 de forma automática. Con el otro proyecto iniciado ya estará disponible la aplicación completa de restaurantes.

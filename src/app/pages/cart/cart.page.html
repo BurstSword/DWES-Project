@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+<ion-list *ngIf="cart">
+  <ion-list *ngFor="let item of cart">
+    <ion-item>
+      <ion-label>{{item.name}}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="sustractItem(item)" >
+          <ion-icon slot="start" name="remove-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-label>{{item.quantity}}</ion-label>
+        <ion-button (click)="addItem(item)" >
+          <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="removeItemFromCart(item)" >
+          <ion-icon color="danger" slot="end" name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      
+    </ion-item>
+  </ion-list>
+</ion-list>
+</ion-content>
+<ion-toolbar>
+  <ion-title>Total:</ion-title>
+  <ion-title slot="end">{{total | currency:"€"}}</ion-title>
+  <ion-button slot="end" (click)="saveOrder()" shape="round">
+    <ion-icon name="card-outline"></ion-icon>
+  </ion-button>
+</ion-toolbar>

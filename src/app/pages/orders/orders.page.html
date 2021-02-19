@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="orders && restaurant">
+<ion-list *ngFor="let item of orders">
+  <ion-item >
+    <ion-label>Order nº {{item.orders.id}}</ion-label>
+     <ion-label slot="end">{{item.orders.v_Date}}</ion-label> 
+     
+  </ion-item>
+</ion-list>
+</ion-content>
