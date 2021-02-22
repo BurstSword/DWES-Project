@@ -1,9 +1,11 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="darkblue">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
     </ion-buttons>
-    <ion-title>orders</ion-title>
+    <ion-title>Orders</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +14,6 @@
   <ion-item >
     <ion-label>Order nº {{item.orders.id}}</ion-label>
      <ion-label slot="end">{{item.orders.v_Date}}</ion-label> 
-     
   </ion-item>
 </ion-list>
 </ion-content>
