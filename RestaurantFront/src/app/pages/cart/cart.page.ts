@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { error } from 'protractor';
 import { Cart, CartItem, Orders, Product } from 'src/app/interfaces/interfaces';
 import Swal from 'sweetalert2'
 import { ShopService } from '../../services/shop.service';

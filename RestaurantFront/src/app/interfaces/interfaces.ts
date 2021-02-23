@@ -38,6 +38,10 @@ export interface ProductsOrders{
     units:number
     
 }
+export interface History{
+    id:number,
+    products?:Product[]
+}
 export interface Restaurant{
     id?:number,
     address?:string,

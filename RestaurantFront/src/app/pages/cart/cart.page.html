@@ -16,9 +16,9 @@
         <ion-card color="midblue">
           <ion-card-header>
             
-              <ion-card-title>{{product.name}}</ion-card-title>
+              <ion-card-title>{{product.name}} <ion-icon (click)="removeItemFromCart(product)" color="danger" name="trash"></ion-icon></ion-card-title>
               <ion-card-subtitle> 
-                <ion-icon (click)="removeItemFromCart(product)" color="danger" slot="end" name="trash"></ion-icon>
+                
               </ion-card-subtitle>
            
             

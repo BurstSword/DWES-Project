@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="darkblue">
+    <ion-buttons slot="start">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true" slot="fixed" *ngIf="restaurant">
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <img src="../../../assets/perfil.svg" alt="">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="user-meta ion-text-center">
+        <h3 class="playername">{{restaurant.mail.split("@")[0]}}</h3>
+        <h3 class="playername">{{restaurant.address}}</h3>
+        <h5 class="country">{{restaurant.country}}</h5>
+        <h5 class="country">{{restaurant.city}}</h5>
+        <h6 class="ranking">Restaurant ID: <ion-chip>
+            <ion-label>{{restaurant.id}}</ion-label>
+          </ion-chip>
+        </h6>
+      </div>
+      
+    </div>
+  </div>
+</ion-content>

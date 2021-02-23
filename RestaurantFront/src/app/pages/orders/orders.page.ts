@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { ProductsOrders, Restaurant } from 'src/app/interfaces/interfaces';
+import { History, ProductsOrders, Restaurant } from 'src/app/interfaces/interfaces';
 import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class OrdersPage implements OnInit {
   public restaurant: Restaurant={};
   public ids:number[]=[];
   public loaded:boolean=false;
+  public history:History[]=[];
   ngOnInit() {
     this.getRestaurant();
   }
