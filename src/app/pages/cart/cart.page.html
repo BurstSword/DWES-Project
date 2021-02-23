@@ -1,33 +1,45 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="darkblue">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
     </ion-buttons>
     <ion-title>Cart</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-<ion-list *ngIf="cart">
-  <ion-list *ngFor="let item of cart">
-    <ion-item>
-      <ion-label>{{item.name}}</ion-label>
-      <ion-buttons slot="end">
-        <ion-button (click)="sustractItem(item)" >
-          <ion-icon slot="start" name="remove-circle-outline"></ion-icon>
-        </ion-button>
-        <ion-label>{{item.quantity}}</ion-label>
-        <ion-button (click)="addItem(item)" >
-          <ion-icon slot="end" name="add-circle-outline"></ion-icon>
-        </ion-button>
-        <ion-button (click)="removeItemFromCart(item)" >
-          <ion-icon color="danger" slot="end" name="trash"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      
-    </ion-item>
-  </ion-list>
-</ion-list>
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngFor="let product of cart, index as i" size="6">
+        <ion-card color="midblue">
+          <ion-card-header>
+            
+              <ion-card-title>{{product.name}} <ion-icon (click)="removeItemFromCart(product)" color="danger" name="trash"></ion-icon></ion-card-title>
+              <ion-card-subtitle> 
+                
+              </ion-card-subtitle>
+           
+            
+          </ion-card-header>
+          <ion-card-content>
+            <ion-buttons slot="start">
+              <ion-button (click)="sustractItem(product)">
+                <ion-icon slot="start" name="remove-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-label>{{product.quantity}}</ion-label>
+              <ion-button (click)="addItem(product)">
+                <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+              </ion-button>
+              
+            </ion-buttons>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 <ion-toolbar>
   <ion-title>Total:</ion-title>

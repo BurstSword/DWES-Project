@@ -7,6 +7,7 @@ export interface Product{
     price:number,
     categories?:Category
     quantity?:number
+    
 }
 export interface CartItem{
     id:number,
@@ -36,6 +37,10 @@ export interface ProductsOrders{
     products:Product
     units:number
     
+}
+export interface History{
+    id:number,
+    products?:Product[]
 }
 export interface Restaurant{
     id?:number,

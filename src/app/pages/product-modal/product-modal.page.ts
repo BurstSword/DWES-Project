@@ -1,21 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, Input} from '@angular/core';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Category, Product } from 'src/app/interfaces/interfaces';
-import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-modal-bar',
   templateUrl: './product-modal.page.html',
   styleUrls: ['./product-modal.page.scss'],
 })
-export class ProductModalPage implements OnInit {
+export class ProductModalPage {
+  
 
-  constructor(private ModalController: ModalController, private storage: Storage) { }
+  constructor(private ModalController: ModalController, private storage: Storage, private toastController:ToastController) { }
   @Input() category: Category;
  
   public cart: Product[] = [];
-  ngOnInit() {
+
+  ionViewWillEnter(){
     this.getCart();
   }
 
@@ -28,6 +29,13 @@ export class ProductModalPage implements OnInit {
     )
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: "Successfully added",
+      duration: 2000
+    });
+    toast.present();
+  }
   async saveCart() {
     await this.storage.set("cart", this.cart);
   }
@@ -38,30 +46,20 @@ export class ProductModalPage implements OnInit {
       if (this.cart[index].name == product.name) {
         exist = true;
       }
-
+      if (exist) {
+        this.cart[index].quantity+=1;
+        this.saveCart();
+      } 
+      
     }
-    if (exist == true) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Already added to cart',
-        showConfirmButton: false,
-        timer: 1500,
-        allowOutsideClick: false,
-        backdrop: false
-      })
-    } else {
+    if(!exist){
       product.quantity = 1;
       this.cart.push(product);
-      Swal.fire({
-        icon: 'success',
-        title: 'Successfully added',
-        showConfirmButton: false,
-        timer: 1500,
-        allowOutsideClick: false,
-        backdrop: false
-      })
       this.saveCart();
     }
+     
+    
+    this.presentToast();
   }
 
   async exit() {

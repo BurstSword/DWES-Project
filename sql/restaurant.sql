@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2021 a las 10:37:27
+-- Tiempo de generación: 23-02-2021 a las 19:05:19
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -38,8 +38,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `description`, `name`) VALUES
-(1, 'Nice milk', 'Dairy'),
-(2, 'Nice cheese', 'Cheeses');
+(1, 'Dairy Products', 'Dairy'),
+(2, 'Tables, Desks, office stuff in general', 'Furniture'),
+(3, 'Drinks and stuff', 'Drinks');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,10 @@ INSERT INTO `orders` (`id`, `sent`, `v_date`, `restaurant_id`) VALUES
 (59, 0, '2021-02-13', 1),
 (60, 0, '2021-02-13', 1),
 (61, 0, '2021-02-13', 1),
-(62, 0, '2021-02-14', 1);
+(62, 0, '2021-02-14', 1),
+(63, 0, '2021-02-23', 2),
+(64, 0, '2021-02-23', 2),
+(65, 0, '2021-02-23', 2);
 
 -- --------------------------------------------------------
 
@@ -73,7 +77,7 @@ INSERT INTO `orders` (`id`, `sent`, `v_date`, `restaurant_id`) VALUES
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `description` int(11) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
@@ -86,8 +90,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `description`, `name`, `price`, `stock`, `weight`, `category_id`) VALUES
-(1, 0, 'Milk', 5, 46, 5, 1),
-(2, 0, 'Cheese', 8, 46, 142, 2);
+(1, 'Nice milk', 'Milk', 5, 40, 5, 1),
+(2, 'Nice desk', 'Desk', 8, 30, 142, 2),
+(3, 'Smelly, but tasty', 'Emmental Cheese', 8, 335, 2, 1),
+(4, 'Comfortable and small', 'Office chair', 40, 338, 15, 2),
+(5, 'Fresh!', 'Just water', 2, 348, 3, 3),
+(6, 'A bit Iugh', 'Cruzcampo', 2, 346, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -106,12 +114,14 @@ CREATE TABLE `products_orders` (
 --
 
 INSERT INTO `products_orders` (`units`, `orders_id`, `products_id`) VALUES
-(1, 58, 1),
-(4, 59, 2),
-(50, 60, 1),
-(4, 61, 1),
-(4, 62, 1),
-(4, 62, 2);
+(4, 64, 2),
+(1, 64, 4),
+(5, 64, 5),
+(7, 64, 6),
+(6, 65, 1),
+(6, 65, 2),
+(7, 65, 3),
+(5, 65, 4);
 
 -- --------------------------------------------------------
 
@@ -134,7 +144,8 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`id`, `address`, `city`, `country`, `cp`, `mail`, `pwd`) VALUES
-(1, '1332410', '3498753', '73649853', '24352', 'javi@mail', '12345678');
+(2, 'C/Apruebame Javi anda', 'Sevilla', 'España', '41006', 'Javi@mail', '12345678'),
+(3, 'C/ En serio, por favor apruébame', 'Sevilla', 'España', '41006', 'Olga@mail', '12345678');
 
 --
 -- Índices para tablas volcadas
@@ -183,25 +194,25 @@ ALTER TABLE `restaurant`
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

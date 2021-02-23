@@ -1,18 +1,19 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="darkblue">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
     </ion-buttons>
-    <ion-title>orders</ion-title>
+    <ion-title>Orders</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="orders && restaurant">
-<ion-list *ngFor="let item of orders">
-  <ion-item >
-    <ion-label>Order nº {{item.orders.id}}</ion-label>
-     <ion-label slot="end">{{item.orders.v_Date}}</ion-label> 
-     
-  </ion-item>
-</ion-list>
+<ion-content *ngIf="orders && restaurant && mapProducts">
+  <ion-list *ngFor="let item of mapProducts | keyvalue">
+    <ion-item (click)="showProducts(item.value)">
+      <ion-label>Order nº {{item.key}}</ion-label>
+      <ion-label slot="end">{{mapOrders.get(item.key).v_Date}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

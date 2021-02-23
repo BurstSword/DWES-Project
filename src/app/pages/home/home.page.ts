@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Category, Product, Restaurant } from 'src/app/interfaces/interfaces';
@@ -10,19 +10,19 @@ import { ProductModalPage } from 'src/app/pages/product-modal/product-modal.page
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   constructor(private storage: Storage, private shopService: ShopService, private modalController: ModalController) { }
   public restaurant: Restaurant = {};
   public categories: Category[] = [];
   public products: Product[] = [];
-  public cart: Product[] = [];
-  ngOnInit() {
+  
+  
+
+  ionViewWillEnter(){
     this.loadRestaurant();
     this.getCategories();
-    this.saveCart();
   }
-
 
  async loadRestaurant() {
     const rest = await this.storage.get('restaurant')
@@ -31,9 +31,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  async saveCart() {
-     await this.storage.set("cart", this.cart);
-  }
+  
 
   async getCategories() {
     await this.shopService.getCategories().subscribe(

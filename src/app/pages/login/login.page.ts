@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Credential, Restaurant } from 'src/app/interfaces/interfaces';
+import { Credential, Product, Restaurant } from 'src/app/interfaces/interfaces';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import Swal from 'sweetalert2'
 import { Storage } from '@ionic/storage';
@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
   public admin: Credential;
   public loginForm: FormGroup;
   public restaurant: Restaurant;
+  public cart: Product[] = [];
   ngOnInit() {
     this.menuCtrl.swipeGesture(false);
     this.createForm();
@@ -32,6 +33,7 @@ export class LoginPage implements OnInit {
         if (data) {
           this.restaurant = data;
           this.storage.set("restaurant", this.restaurant);
+          this.saveCart();
           Swal.fire({
             icon: 'success',
             title: 'Logged successfully',
@@ -65,7 +67,9 @@ export class LoginPage implements OnInit {
     return this.loginForm.get('pwd')
   }
 
-
+  async saveCart() {
+    await this.storage.set("cart", this.cart);
+ }
 
   createForm() {
     this.loginForm = this.formBuilder.group({

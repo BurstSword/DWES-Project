@@ -8,15 +8,20 @@
 </ion-header>
 
 <ion-content *ngIf="categories">
-  <ion-list *ngFor="let category of categories">
-    <ion-item (click)="showProducts(category)">
-      <ion-avatar slot="start">
-        <img src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg"/>
-      </ion-avatar>
-      <ion-label>{{category.name}}</ion-label>
-      <ion-label slot="end">{{category.productsList.length}} product/s</ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngFor="let category of categories, index as i" size="6">
+        <ion-card (click)="showProducts(category)" color="midblue">
+          <ion-card-header>
+            <ion-card-title class="titleCategory">{{category.name}}</ion-card-title>
+            <ion-card-subtitle>{{category.description}} </ion-card-subtitle>
+            <ion-card-subtitle>Products: {{category.productsList.length}} </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-fab routerLink="/cart" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="cart"></ion-icon>
