@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'order-modal',
+    loadChildren: () => import('./pages/order-modal/order-modal.module').then( m => m.OrderModalPageModule)
+  },
 
   
 ];

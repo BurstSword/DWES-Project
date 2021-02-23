@@ -108,7 +108,7 @@ public class UserController {
 
         }
 
-       // emailPort.sendEmail(new EmailBody(restaurant.getMail(),order,"Order nº "+ orders.getId()));
+        emailPort.sendEmail(new EmailBody(restaurant.getMail(),order,"Order nº "+ orders.getId()));
 
 
         return ResponseEntity.ok("200");
