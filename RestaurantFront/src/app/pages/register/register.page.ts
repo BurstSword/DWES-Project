@@ -24,7 +24,9 @@ export class RegisterPage implements OnInit {
     this.createForm();
   }
 
-
+  ionViewWillEnter() {
+    this.registerForm.reset();
+  }
 
   register() {
     if (this.registerForm.invalid) return

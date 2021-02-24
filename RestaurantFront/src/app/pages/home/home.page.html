@@ -10,13 +10,15 @@
 <ion-content *ngIf="categories">
   <ion-grid fixed>
     <ion-row>
-      <ion-col *ngFor="let category of categories, index as i" size="6">
-        <ion-card (click)="showProducts(category)" color="midblue">
+      <ion-col class="categoryCol ion-align-self-center" *ngFor="let category of categories, index as i" size="6">
+        <ion-card class="categoryCard" (click)="showProducts(category)" color="midblue">
           <ion-card-header>
             <ion-card-title class="titleCategory">{{category.name}}</ion-card-title>
             <ion-card-subtitle>{{category.description}} </ion-card-subtitle>
-            <ion-card-subtitle>Products: {{category.productsList.length}} </ion-card-subtitle>
           </ion-card-header>
+          <ion-card-content>
+            Products: {{category.productsList.length}}
+          </ion-card-content>
         </ion-card>
 
       </ion-col>

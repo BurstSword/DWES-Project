@@ -25,6 +25,10 @@ export class LoginPage implements OnInit {
     this.storage.clear();
   }
 
+  ionViewWillEnter() {
+    this.loginForm.reset();
+  }
+  
   login() {
     if (this.loginForm.invalid) return
     this.restaurant = this.loginForm.value;
@@ -39,8 +43,8 @@ export class LoginPage implements OnInit {
             title: 'Logged successfully',
             showConfirmButton: false,
             timer: 1500,
-            allowOutsideClick:false,
-            
+            allowOutsideClick: false,
+
           }).then((result) => {
             if (result.isDismissed) {
               this.router.navigate(['/home']);
@@ -53,8 +57,8 @@ export class LoginPage implements OnInit {
           title: 'Wrong credentials',
           showConfirmButton: false,
           timer: 1500,
-          allowOutsideClick:false,
-          
+          allowOutsideClick: false,
+
         })
       }
     )
@@ -69,12 +73,12 @@ export class LoginPage implements OnInit {
 
   async saveCart() {
     await this.storage.set("cart", this.cart);
- }
+  }
 
   createForm() {
     this.loginForm = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
-      pwd: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(255)]]
+      pwd: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]]
     })
   }
   validationMessages = {
